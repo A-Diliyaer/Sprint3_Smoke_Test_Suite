@@ -1,4 +1,4 @@
-package Sprint3;
+package Sprint3.tests;
 
 public class Smoke_Test_Suite {
 
