@@ -7,6 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -259,8 +260,25 @@ public class Message_Tab {
         WebElement quoteBox = driver.findElement(By.xpath("/html/body/blockquote"));
         Assert.assertTrue(quoteBox.isDisplayed());
     }
+    @Test
+    public void messageQuote() throws InterruptedException {
+        // Selects "Message" tab on the main selection menu
+        Thread.sleep(1);
+        WebElement messageField = driver.findElement(By.xpath("//span[@class='feed-add-post-form-link feed-add-post-form-link-active']"));
+        messageField.click();
+        //Clicking on Insert video icon
+        Thread.sleep(1);
+        WebElement video = driver.findElement(By.xpath("//*[@id=\"bx-b-video-blogPostForm\"]/span/i"));
+        video.click();
 
-    @AfterMethod
+        driver.manage().timeouts().implicitlyWait(3, TimeUnit.SECONDS);
+        driver.switchTo().window(driver.getWindowHandle());
+
+        driver.findElement(By.xpath("//input[@class='bxhtmled-90-input']")).sendKeys("www.google.com");
+        driver.findElement(By.xpath("//input[@value='Save']")).click();
+
+    }
+        @AfterMethod
     public void tearDown(){
         driver.quit();
     }
