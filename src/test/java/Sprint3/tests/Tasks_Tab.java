@@ -1,7 +1,9 @@
 package Sprint3.tests;
 
+import Sprint3.util.BrowserUtil;
 import Sprint3.util.WebDriverFactory;
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
@@ -46,6 +48,29 @@ public class Tasks_Tab {
         Assert.assertTrue(actualResult.isDisplayed(),"Text editor bar is NOT displayed. Failed!");
     }
 
+    @Test
+    public void spirnt3_story2_AC4(){
+        //Clicking Task Button
+        WebElement taskField = driver.findElement(By.xpath("//*[@id=\"feed-add-post-form-tab-tasks\"]/span"));
+        taskField.click();
+
+        //Clicking Quote Button
+        WebElement quoteButtonTwo = driver.findElement(By.xpath("//*[@id=\"bx-b-quote-task-form-lifefeed_task_form\"]/span/i"));
+        quoteButtonTwo.click();
+        BrowserUtil.Wait(1);
+
+        //Confirming Created Quote Box
+        WebElement iframeTwo = driver.findElement(By.xpath("//*[@id=\"bx-html-editor-iframe-cnt-lifefeed_task_form\"]/iframe"));
+        driver.switchTo().frame(iframeTwo);
+        BrowserUtil.Wait(1);
+        WebElement quoteBoxTwo = driver.findElement(By.xpath("/html/body/blockquote"));
+        try {
+            quoteBoxTwo.click();
+        }catch (StaleElementReferenceException ex){
+            quoteBoxTwo.click();
+            Assert.assertTrue(quoteButtonTwo.isDisplayed());
+        }
+    }
 
 
 
