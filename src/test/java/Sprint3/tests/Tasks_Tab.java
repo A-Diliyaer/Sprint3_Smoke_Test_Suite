@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -125,4 +126,20 @@ public class Tasks_Tab {
     public void tearDown(){
         driver.quit();
     }
+
+    @Test
+    public void click_More_forTaskdetails() throws InterruptedException {
+
+        // navigates to Task tab and click
+        WebElement testButton = driver.findElement(By.xpath("//span[.='Task']/span[1]"));
+        testButton.click();
+
+        // user clicks on More to reveal more options
+        WebElement moreButton = driver.findElement(By.xpath("//div[@class='task-additional-alt-more']"));
+        Thread.sleep(2000);
+        moreButton.click();
+
+    }
+
+
 }
