@@ -9,5 +9,6 @@
         <module name="Sprint3_Smoke_Test_Suite" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel target="8" />
   </component>
 </project>
